@@ -76,13 +76,13 @@ body {
 
 .contentCard {
   width: 100%;
-  padding: 2rem; 
+  padding: 2rem;
 }
-
 
 .controlsBar {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   margin-top: 1.5rem;
   gap: 1rem;
 }
@@ -278,10 +278,9 @@ body {
   color: #333;
   font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 3.5rem; 
+  margin-bottom: 3.5rem;
   padding-bottom: 0.9375rem;
 }
-
 
 .pagination {
   align-items: center;
@@ -291,15 +290,17 @@ body {
   margin-top: 1.875rem;
 }
 
+/* Alterações no SearchBox para se parecer com o SortBox */
 .searchBox {
   align-items: center;
-  background-color: #f5f5f5;
-  border: 0.0625rem solid #ddd;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   border-radius: 0.5rem;
   display: flex;
   flex-grow: 1;
   max-width: 18.75rem;
-  padding: 0.625rem 0.9375rem;
+  padding: 0.5rem 0.9375rem;
 }
 
 .searchIcon {
@@ -376,7 +377,7 @@ body {
   background-color: #fcfcfc;
   color: #888;
   font-weight: 600;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 .userTable th, .userTable td {
@@ -384,4 +385,44 @@ body {
   font-size: 0.875rem;
   padding: 0.9375rem;
   text-align: left;
+}
+
+/* NOVO: Classe sortBox implementada */
+.sortBox {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #666;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0.9375rem;
+  position: relative;
+  font-weight: 400;
+}
+
+.sortBox span {
+  margin-right: 0.25rem;
+  color: #666;
+}
+
+.dropdownSelect {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding-right: 20px;
+  color: #333;
+  font-weight: 600;
+  outline: none;
+}
+
+.dropdownArrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #333;
 }

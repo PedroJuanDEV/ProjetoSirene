@@ -1,48 +1,54 @@
 import React, { useState, type JSX } from "react";
 import styles from "./ConfirmarSenha.module.css";
+import { useNavigate } from 'react-router-dom';
 
-
-function RecuperarSenha(): JSX.Element {
-  const [matricula, setMatricula] = useState("");
-  const [cpf, setCpf] = useState("");
+function ConfirmarSenha(): JSX.Element {
+  const navigate = useNavigate();
+  const [novaSenha, setNovaSenha] = useState("");
+  const [confirmarNovaSenha, setConfirmarNovaSenha] = useState("");
 
   const handleAvancar = () => {
     
-    console.log("Avançar clicado");
-    console.log("Matrícula:", matricula);
-    console.log("CPF:", cpf);
+    
+    console.log("Avançar clicado. Senha confirmada.");
+
+    
+    navigate("/"); 
   };
 
   const handleCancelar = () => {
-    console.log("Cancelar clicado. Redirecionando para /login");
-    window.location.href = "/login"; 
+    console.log("Cancelar clicado. Redirecionando para /");
+    
+    navigate("/");
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.cardRecuperacao}>
-        <h1 className={styles.titulo}>RECUPERAR SENHA</h1>
+        <h1 className={styles.titulo}>CONFIRMAR SENHA</h1>
 
-       
+        
         <div className={styles.formField}>
-          <label htmlFor="matricula" className={styles.labelText}>Nova senha</label>
+          <label htmlFor="novaSenha" className={styles.labelText}>Nova senha</label>
           <input
-            id="matricula"
-            type="text"
-            value={matricula}
-            onChange={(e) => setMatricula(e.target.value)}
+            id="novaSenha"
+            
+            type="password" 
+            value={novaSenha}
+            onChange={(e) => setNovaSenha(e.target.value)}
             className={styles.inputField}
           />
         </div>
 
-       
+        
         <div className={styles.formField}>
-          <label htmlFor="cpf" className={styles.labelText}>Confirmar nova senha</label>
+          <label htmlFor="confirmarNovaSenha" className={styles.labelText}>Confirmar nova senha</label>
           <input
-            id="cpf"
-            type="text"
-            value={cpf}
-            onChange={(e) => setCpf(e.target.value)}
+            id="confirmarNovaSenha"
+          
+            type="password" 
+            value={confirmarNovaSenha}
+            onChange={(e) => setConfirmarNovaSenha(e.target.value)}
             className={styles.inputField}
           />
         </div>
@@ -59,7 +65,7 @@ function RecuperarSenha(): JSX.Element {
             onClick={handleAvancar} 
             className={`${styles.button} ${styles.buttonAvancar}`}
           >
-            Avançar
+            Confirmar
           </button>
         </div>
       </div>
@@ -71,4 +77,4 @@ function RecuperarSenha(): JSX.Element {
   );
 }
 
-export default RecuperarSenha;
+export default ConfirmarSenha;

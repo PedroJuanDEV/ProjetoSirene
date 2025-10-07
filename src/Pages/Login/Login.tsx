@@ -1,10 +1,9 @@
-// No seu arquivo Login.tsx
+// Login.tsx
 import React, { useState, type JSX } from "react";
 import styles from "./Login.module.css";
 import { useNavigate } from 'react-router-dom';
 
 function Login(): JSX.Element {
-  // ... seu código de estado e funções
   const navigate = useNavigate();
 
   const [cpf, setCpf] = useState("");
@@ -14,9 +13,9 @@ function Login(): JSX.Element {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (cpf === "seu_cpf" && senha === "sua_senha") {
+    if (cpf === "1" && senha === "1") {
 
-      navigate('/GestaoUsuario');
+      navigate('/Ocorrencias');
     } else {
       setMessage("Credenciais inválidas. Tente novamente.");
     }
@@ -27,12 +26,12 @@ function Login(): JSX.Element {
   const handleForgotPassword = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    navigate("/");
+    navigate("/RecuperarSenha"); 
   };
 
 
   return (
-    <div className={styles.pageContainer}> {/* Adicione esta div aqui */}
+    <div className={styles.pageContainer}> 
       <form className={styles.box} onSubmit={handleLogin}>
         <div className={styles.containerLogin}>
           <div className={styles.textWrapper}>FAÇA LOGIN</div>
@@ -62,7 +61,7 @@ function Login(): JSX.Element {
           </div>
 
           <a
-            href="/"
+            href="/RecuperarSenha" 
             className={styles.textWrapper4}
             onClick={handleForgotPassword}
           >
