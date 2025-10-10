@@ -1,6 +1,5 @@
-// ListaOcorrencias.tsx
 import React, { useState, type JSX } from 'react';
-import { LayoutDashboard, Users, FileText, BarChart, Settings, LogOut, Search, SlidersHorizontal, ChevronDown, ChevronLeft, ChevronRight, Eye, AlertCircle, TrendingUp, HelpCircle } from 'lucide-react';
+import { LayoutDashboard, Users, FileText, BarChart, Settings, LogOut, Search, SlidersHorizontal, ChevronDown, ChevronLeft, ChevronRight, Eye, AlertCircle } from 'lucide-react';
 import styles from './Ocorrencias.module.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -63,14 +62,12 @@ function ListaOcorrencias(): JSX.Element {
   };
   
   const handleMenuItemClick = (path: string) => {
-    
     navigate(path);
-    console.log(`Navegando para: ${path}`);
   };
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
-   
+    
     const maxVisiblePages = 4;
     
     
@@ -136,7 +133,6 @@ function ListaOcorrencias(): JSX.Element {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className={styles.mainContent}>
         <h1 className={styles.pageTitle}>Ocorrências registradas</h1>
 
@@ -177,15 +173,15 @@ function ListaOcorrencias(): JSX.Element {
         </div>
 
         <div className={styles.tableContainer}>
-          <table className={styles.ocorrenciaTable}>
+          <table className={styles.userTable}>
             <thead>
               <tr>
-                <th className={styles.headerSmall}>Tipo</th>
+                <th className={styles.headerLarge}>Tipo</th> 
                 <th className={styles.headerSmall}>Id</th>
-                <th className={styles.headerMedium}>Região(RPA)</th>
+                <th className={styles.headerSmall}>Região(RPA)</th>
                 <th className={styles.headerLarge}>Data/Hora</th>
-                <th className={styles.headerMedium}>Ações</th>
-                <th className={styles.headerStatus}>Status</th>
+                <th className={styles.headerActions}>Ações</th>
+                <th className={styles.headerSmall}>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -203,9 +199,7 @@ function ListaOcorrencias(): JSX.Element {
                     <td>{ocorrencia.regiao}</td>
                     <td>{ocorrencia.dataHora}</td>
                     <td className={styles.actionsCell}>
-                      <span className={styles.detailLink} onClick={() => console.log('Ver detalhe: ' + ocorrencia.id)}>
-                        Ver detalhe
-                      </span>
+                      <Eye size={16} className={styles.actionIcon} onClick={() => console.log('Ver detalhe: ' + ocorrencia.id)} />
                     </td>
                     <td>
                       <span className={`${styles.statusPill} ${getStatusClass(ocorrencia.status)}`}>

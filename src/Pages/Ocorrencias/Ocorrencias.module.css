@@ -126,8 +126,9 @@ body {
   width: 100%;
 }
 
+/* Ajuste de largura (2x 30% e 4x 10% = 100%) */
 .headerLarge {
-  width: 25%;
+  width: 30%;
 }
 
 .headerSmall, .headerActions {
@@ -336,6 +337,7 @@ body {
   flex-grow: 1;
 }
 
+
 .statusActive {
   background-color: #fff;
   border: 0.0625rem solid #082FAD;
@@ -346,6 +348,25 @@ body {
   background-color: #fff;
   border: 0.0625rem solid #550D08cc;
   color: #550D08;
+}
+
+
+.statusOpen { 
+  background-color: #fff;
+  border: 0.0625rem solid #00B087; 
+  color: #00B087;
+}
+
+.statusClosed { 
+  background-color: #fff;
+  border: 0.0625rem solid #DF0404; 
+  color: #DF0404;
+}
+
+.statusInProgress { 
+  background-color: #fff;
+  border: 0.0625rem solid #FF6200; 
+  color: #FF6200;
 }
 
 .statusPill {
@@ -387,7 +408,7 @@ body {
   text-align: left;
 }
 
-/* NOVO: Classe sortBox implementada */
+
 .sortBox {
   display: flex;
   align-items: center;

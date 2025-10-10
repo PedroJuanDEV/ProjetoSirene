@@ -177,6 +177,7 @@ body {
 .modalContent {
   animation: fadeInScale 0.3s ease;
   background: #fff;
+  border: #550D08cc 0.0625rem solid;
   border-radius: 0.75rem;
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
   max-width: 500px;
@@ -376,7 +377,7 @@ body {
   background-color: #fcfcfc;
   color: #888;
   font-weight: 600;
-  text-transform: capitalize;
+  text-transform: uppercase
 }
 
 .userTable th, .userTable td {
