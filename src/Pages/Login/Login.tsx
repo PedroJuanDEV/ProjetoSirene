@@ -15,7 +15,7 @@ function Login(): JSX.Element {
 
     if (cpf === "1" && senha === "1") {
 
-      navigate('/Ocorrencias');
+      navigate('/inicial');
     } else {
       setMessage("Credenciais inválidas. Tente novamente.");
     }

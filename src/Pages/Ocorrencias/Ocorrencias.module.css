@@ -15,7 +15,7 @@
   --border-color: #e0e0e0;
   --primary-dark: #550D08;
   --primary-light: #702c28;
-  --radius-default: 0.5rem; 
+  --radius-default: 0.5rem;
   --status-closed: #DF0404;
   --status-in-progress: #FF6200;
   --status-open: #00B087;
@@ -48,7 +48,7 @@
 }
 
 body {
-  background-color: var(--background-page);
+  background-color: #fff;
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   margin: 0;
@@ -132,7 +132,7 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
-  padding: 3rem 0; 
+  padding: 3rem 0;
 }
 
 .mainContent {
@@ -150,9 +150,10 @@ body {
     border-radius: var(--radius-default);
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.03);
     display: flex;
-    flex: 1; 
+    /* ALTERAÇÃO: Define a largura flexível para 30% para estreitar */
+    flex: 0 1 30%; 
     flex-direction: column;
-    padding: 1rem 1.5rem; 
+    padding: 0.8rem 1rem;
     text-align: center;
 }
 
@@ -160,30 +161,31 @@ body {
     animation: fadeInScale 0.3s ease-in-out;
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: flex-start; 
-    margin-bottom: 2rem; 
+    gap: 1rem;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
     width: 100%;
+
 }
 
 .metricTitle {
     color: var(--text-subtle);
-    font-size: 0.8rem; 
+    font-size: 0.8rem;
     font-weight: 600;
-    margin-bottom: 0.5rem; 
+    margin-bottom: 0.3rem;
     text-transform: uppercase;
 }
 
 .metricUnit {
     color: var(--primary-dark);
-    font-size: 1rem; 
+    font-size: 1rem;
     font-weight: 600;
     margin-left: 0.3rem;
 }
 
 .metricValue {
     color: var(--primary-dark);
-    font-size: 2.5rem; 
+    font-size: 2rem;
     font-weight: 700;
     line-height: 1;
 }
@@ -224,7 +226,7 @@ body {
   transition: background-color 0.2s, border-left 0.2s;
 }
 
-.navItem:hover {
+.navItem:hover:not(.navActive) {
   background-color: var(--primary-light);
 }
 
@@ -232,7 +234,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .navText {
@@ -241,10 +243,10 @@ body {
 
 .newOcorrenciaButton {
     align-items: center;
-    background-color: var(--primary-dark);
-    border: none;
+   background-color: #ffffff;
+    border: 1px solid var(--primary-dark);
     border-radius: var(--radius-default);
-    color: var(--text-light);
+    color: var(--primary-dark);
     cursor: pointer;
     display: flex;
     font-size: 0.9rem;
@@ -322,7 +324,7 @@ body {
   align-items: center;
   display: flex;
   gap: 0.5rem;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   margin-top: 1.5rem;
   width: 100%;
 }
@@ -351,7 +353,7 @@ body {
 .searchFilterGroup {
     align-items: center;
     display: flex;
-    gap: 0.75rem; 
+    gap: 0.75rem;
 }
 
 .searchIcon {
@@ -383,13 +385,12 @@ body {
   border-top: 0.0625rem solid rgba(255, 255, 255, 0.1);
   margin-left: 0;
   margin-top: 2rem;
-  padding: 1.5rem 1.5rem; 
+  padding: 1.5rem 1.5rem;
 }
 
 .sortDropdown {
     align-items: center;
     background-color: var(--background-card);
-    border: 1px solid var(--border-color);
     border-radius: var(--radius-default);
     color: var(--text-dark);
     display: flex;
@@ -403,18 +404,18 @@ body {
     color: var(--text-subtle);
 }
 
-.statusClosed { 
-  border: 1px solid var(--status-closed); 
+.statusClosed {
+  border: 1px solid var(--status-closed);
   color: var(--status-closed);
 }
 
-.statusInProgress { 
-  border: 1px solid var(--status-in-progress); 
+.statusInProgress {
+  border: 1px solid var(--status-in-progress);
   color: var(--status-in-progress);
 }
 
-.statusOpen { 
-  border: 1px solid var(--status-open); 
+.statusOpen {
+  border: 1px solid var(--status-open);
   color: var(--status-open);
 }
 

@@ -122,7 +122,7 @@ function ListaOcorrencias(): JSX.Element {
   return (
     <div className={styles.appContainer}>
       
-      {/* SIDEBAR */}
+     
       <div className={styles.sidebar}>
         <div className={styles.logoSection}>
           <div className={styles.sLogo}>S</div> 
@@ -162,7 +162,7 @@ function ListaOcorrencias(): JSX.Element {
           </div>
         </nav>
 
-        {/* Item "Sair" na parte inferior */}
+        
         <div className={styles.navItem} onClick={() => handleMenuItemClick('/')}>
           <LogOut size={20} className={styles.navIcon} />
           <span className={styles.navText}>Sair</span>
@@ -171,10 +171,8 @@ function ListaOcorrencias(): JSX.Element {
 
       <div className={styles.mainContent}>
         
-        {/* Título da Página */}
-        <h1 className={styles.pageHeaderTitle}>Lista de Ocorrências - ADMIN</h1>
 
-        {/* BARRA DE CONTROLES (AGORA ACIMA DOS CARDS) */}
+       
         <div className={styles.controlsBar}>
           
           <div className={styles.searchFilterGroup}>
@@ -220,7 +218,7 @@ function ListaOcorrencias(): JSX.Element {
           </div>
         </div>
 
-        {/* CARDS DE MÉTRICAS (AGORA ABAIXO DOS CONTROLES) */}
+      
         <div className={styles.metricCardsContainer}>
             <MetricCard 
                 title="Total de Ocorrências" 
@@ -238,7 +236,7 @@ function ListaOcorrencias(): JSX.Element {
         </div>
 
 
-        {/* Tabela de Ocorrências */}
+       
         <div className={styles.tableContainer}>
           <table className={styles.userTable}>
             <thead>
@@ -281,7 +279,7 @@ function ListaOcorrencias(): JSX.Element {
           </table>
         </div>
 
-        {/* Paginação */}
+        
         <div className={styles.pagination}>
           <div className={styles.pageNumbers}>
             {renderPageNumbers()}
