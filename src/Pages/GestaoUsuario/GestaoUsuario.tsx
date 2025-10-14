@@ -71,26 +71,38 @@ return ( <div className={styles.appContainer}>
     </div>
 
     <nav className={styles.navMenu}>
+
+<div className={styles.navItem} onClick={() => handleMenuItemClick('/Inicial')}>
+        <div className={styles.navIcon}><FileText size={20} /></div>
+        <span className={styles.navText}>Pagina inicial</span>
+      </div>
+
+
+     <div className={styles.navItem} onClick={() => handleMenuItemClick('/Ocorrencias')}>
+        <div className={styles.navIcon}><FileText size={20} /></div>
+        <span className={styles.navText}>Lista de ocorrências</span>
+      </div>
+
       <div className={styles.navItem} onClick={() => handleMenuItemClick('/dashboard')}>
         <div className={styles.navIcon}><LayoutDashboard size={20} /></div>
         <span className={styles.navText}>Dashboard</span>
       </div>
+
       <div className={`${styles.navItem} ${styles.navActive}`} onClick={() => handleMenuItemClick('/gestao-usuarios')}>
         <div className={styles.navIcon}><Users size={20} /></div>
         <span className={styles.navText}>Gestão de usuários</span>
       </div>
-      <div className={styles.navItem} onClick={() => handleMenuItemClick('/Ocorrencias')}>
-        <div className={styles.navIcon}><FileText size={20} /></div>
-        <span className={styles.navText}>Lista de ocorrências</span>
-      </div>
+    
       <div className={styles.navItem} onClick={() => handleMenuItemClick('/auditoria')}>
         <div className={styles.navIcon}><BarChart size={20} /></div>
         <span className={styles.navText}>Auditoria e logs</span>
       </div>
+
       <div className={styles.navItem} onClick={() => handleMenuItemClick('/configuracao')}>
         <div className={styles.navIcon}><Settings size={20} /></div>
         <span className={styles.navText}>Configuração</span>
       </div>
+
     </nav>
 
     <div className={styles.navItem} onClick={() => handleMenuItemClick('/')}>
