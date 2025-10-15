@@ -4,7 +4,9 @@ import ConfirmarSenha from './Pages/ConfirmarSenha/ConfirmarSenha.tsx';
 import GestaoUsuarios from './Pages/GestaoUsuario/GestaoUsuario.tsx';
 import RecuperarSenha from './Pages/RecuperarSenha/RecuperarSenha.tsx';
 import Ocorrencias from './Pages/Ocorrencias/Ocorrencias.tsx';
+import Visualizacao from './Pages/Visualizacao/visualizacao.tsx';
 import Inicial from './Pages/Inicial/Inicial.tsx';
+import Dashboard from './Pages/Dashboard/Dashboard.tsx';
 import './App.css';
 
 function App() {
@@ -24,6 +26,11 @@ function App() {
 
         <Route path="/Inicial" element={<Inicial />} />
         
+        
+        <Route path='/Visualizacao/:id' element={<Visualizacao />} />
+
+        <Route path='/Dashboard' element={<Dashboard />} />
+
         <Route path="*" element={<div>404 - Página Não Encontrada</div>} />
 
 

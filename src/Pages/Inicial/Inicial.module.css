@@ -9,49 +9,50 @@
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 :root {
-  --background-card: #ffffff; /* Adicionado do primeiro arquivo */
-  --background-page: #fff; /* Adicionado do primeiro arquivo */
+  --background-card: #ffffff;
+  --background-page: #fff;
   --background-light: #fff;
-  --border-color: #e0e0e0; /* Adicionado do primeiro arquivo */
+  --border-color: #e0e0e0;
   --border-color-card: #fff;
   --border-color-table: #fff;
   --primary-dark: #550D08;
   --primary-light: #702c28;
-  --radius-default: 0.5rem; /* Alterado de 0.75rem para 0.5rem (primeiro arquivo) */
+  --radius-default: 0.5rem;
   --status-closed: #DF0404;
   --status-in-progress: #FF6200;
   --status-open: #00B087;
   --text-dark: #333333;
   --text-light: #eeeeee;
-  --text-subtle: #999999; /* Adicionado do primeiro arquivo */
+  --text-subtle: #999999;
   --white: #ffffff;
-}
-
-body {
-  background-color: var(--background-page); /* Alterado para usar a variável padronizada */
-  box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-  min-height: 100vh;
-  padding: 0;
 }
 
 .actionCard {
   align-items: center;
   background-color: var(--white);
   border-radius: var(--radius-default);
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05); 
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 7.5rem; 
+  height: 7.5rem;
   justify-content: center;
-  margin: 3rem; 
-  padding: 1.25rem; 
+  margin: 3rem;
+  padding: 1.25rem;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
-  width: 15rem; 
+  width: 15rem;
 }
 
 .actionCard:hover {
@@ -61,12 +62,12 @@ body {
 
 .actionCards {
   display: flex;
-  gap: 1.25rem; 
-  margin-bottom: 1.25rem; 
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
   overflow-x: auto;
-  padding-bottom: 0.625rem; 
-  width: fit-content; 
-  max-width: 100%; 
+  padding-bottom: 0.625rem;
+  width: fit-content;
+  max-width: 100%;
   justify-content: center;
 }
 
@@ -78,22 +79,17 @@ body {
   display: flex;
   flex-shrink: 0;
   justify-content: center;
-  margin-right: 0.9375rem; 
-  padding: 0.5rem; 
+  margin-right: 0.9375rem;
+  padding: 0.5rem;
 }
 
 .activityItem {
   align-items: flex-start;
-  background-color: #EEEEEE; 
-  border-radius: 0.5rem; 
+  background-color: #EEEEEE;
+  border-radius: 0.5rem;
   display: flex;
-  padding: 0.625rem; 
-  margin-bottom: 0.3125rem; 
-}
-
-
-.activityItem:last-child {
-  border-bottom: none;
+  padding: 0.625rem;
+  margin-bottom: 0.3125rem;
 }
 
 .activityItem:last-child {
@@ -103,10 +99,9 @@ body {
 .activityList {
   display: flex;
   flex-direction: column;
-  gap: 0.3125rem; /* 5px */
-  max-height: 18.75rem; /* 300px */
+  gap: 0.3125rem;
+  max-height: 18.75rem;
   overflow-y: auto;
-  
 }
 
 .activityText {
@@ -124,7 +119,7 @@ body {
 .activityTime {
   color: #94918A;
   font-size: 0.8rem;
-  margin-top: 0.125rem; 
+  margin-top: 0.125rem;
   font-style: normal;
   font-weight: 400;
   line-height: 1.2;
@@ -136,25 +131,42 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-
 }
 
 .appContainer {
-  color: var(--text-dark); /* Alterado para usar a variável padronizada */
+  color: var(--text-dark);
   display: flex;
   min-height: 100vh;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+body {
+  background-color: var(--background-page);
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+}
+
+.blurBackground {
+  filter: blur(3px) grayscale(50%);
+  transition: filter 0.3s ease;
+  pointer-events: none;
 }
 
 .calendarCard {
-  padding: 0 1.25rem; 
+  padding: 0 1.25rem;
   margin-top: 10rem;
   background-color: var(--white);
-  border: 0.0625rem solid var(--border-color-card); 
+  border: 0.0625rem solid var(--border-color-card);
   border-radius: var(--radius-default);
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
   animation: fadeInScale 0.3s ease-in-out;
-  padding-bottom: 1.25rem; 
-}  
+  padding-bottom: 1.25rem;
+}
 
 .calendarDay {
   align-items: center;
@@ -162,7 +174,7 @@ body {
   cursor: pointer;
   display: flex;
   font-size: 1rem;
-  height: 1.875rem; 
+  height: 1.875rem;
   justify-content: center;
   text-align: center;
   transition: background-color 0.2s;
@@ -179,7 +191,7 @@ body {
 
 .calendarGrid {
   display: grid;
-  gap: 0.5rem; 
+  gap: 0.5rem;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
 }
@@ -194,7 +206,6 @@ body {
   text-transform: capitalize;
   justify-content: space-between;
   margin-bottom: 0.9375rem;
-
 }
 
 .cardIcon {
@@ -219,7 +230,7 @@ body {
 
 .cellTipoName {
   font-weight: 600;
-  margin-bottom: 0.125rem; /* 2px */
+  margin-bottom: 0.125rem;
 }
 
 .currentMonthDay {
@@ -229,14 +240,14 @@ body {
 .dashboardGrid {
   display: flex;
   flex-direction: column;
-  gap: 1.875rem; 
+  gap: 1.875rem;
 }
 
 .feedContainer {
   background-color: var(--white);
   border-radius: var(--radius-default);
   box-shadow: 0.01rem 0.30rem rgba(0, 0, 0, 0.05);
-  padding: 1.25rem; 
+  padding: 1.25rem;
 }
 
 .feedTitle {
@@ -244,74 +255,152 @@ body {
   font-size: 0.9rem;
   font-weight: 600;
   font-style: normal;
-  margin-bottom: 0.9375rem; 
+  margin-bottom: 0.9375rem;
 }
 
 .logoIcon {
-  color: var(--text-light); /* Alterado para usar a variável padronizada */
-  margin-right: 0.9375rem; /* Alterado de 0.625rem para 0.9375rem */
+  color: var(--text-light);
+  margin-right: 0.5rem;
+}
+
+.logoImage {
+  width: 30px;
+  height: 30px;
+  margin-right: 0.5rem;
 }
 
 .logoSection {
   align-items: center;
-  display: flex; /* Mantido */
-  justify-content: center; /* Alterado de flex-start para center */
-  margin-bottom: 2rem; /* Alterado de 1.25rem para 2rem */
-  padding: 3rem 0; /* Alterado o padding */
-  border-bottom: none; /* Removido a borda para padronizar */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: none;
 }
 
 .logoText {
   font-size: 1.2rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: var(--text-light);
 }
 
 .mainContent {
-  background-color: var(--background-page); /* Adicionado background do primeiro arquivo */
+  background-color: var(--background-page);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   overflow-y: auto;
-  padding: 2.5rem 3rem; /* Padronizado */
-  max-width: none; /* Removido max-width */
-  align-items: flex-start; /* Ajustado para padrão de conteúdo */
+  padding: 2.5rem 3rem;
+  max-width: none;
+  align-items: flex-start;
+}
+
+.modalCloseButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-subtle);
+  padding: 5px;
+  transition: color 0.2s;
+}
+
+.modalCloseButton:hover {
+  color: var(--primary-dark);
+}
+
+.modalContent {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  transform: scale(0.9);
+  animation: popIn 0.3s forwards;
+}
+
+.modalInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(1px);
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.modalTitle {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  font-size: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
 }
 
 .navActive {
-  background-color: var(--background-page);
-  border-radius: 0; /* Alterado para 0 */
-  color: var(--primary-dark);
-  font-weight: 700; /* Alterado de bold para 700 */
-  margin-left: 0; /* Adicionado para padronizar */
-  padding-left: 1.5rem; /* Ajustado padding */
+  /* NOVO EFEITO: Mantém o fundo escuro, texto claro e adiciona borda lateral */
+  background-color: var(--primary-dark);
+  border-radius: var(--radius-default) 0 0 var(--radius-default);
+  color: var(--text-light);
+  font-weight: 700;
+  margin-left: 0.75rem; 
+  /* Borda branca de destaque */
+  border-left: 4px solid var(--white); 
+  padding-left: calc(1.5rem - 4px);
 }
 
 .navActive .navIcon {
-  color: var(--primary-dark);
+  color: var(--text-light);
 }
 
 .navIcon {
   color: var(--text-light);
   margin-right: 0.9375rem;
-  transition: color 0.2s; /* Adicionada transição */
+  transition: color 0.2s;
 }
 
 .navItem {
   align-items: center;
-  border-radius: var(--radius-default) 0 0 var(--radius-default); /* Alterado o border-radius */
+  border-radius: var(--radius-default) 0 0 var(--radius-default);
   cursor: pointer;
   display: flex;
   font-size: 0.95rem;
   font-weight: 600;
-  margin-left: 0.75rem; /* Alterado de margin-right para margin-left e padronizado */
-  margin-top: 0; /* Removido margin-top para padronizar */
-  margin-right: 0; /* Removido margin-right */
-  padding: 0.8rem 1.5rem; /* Padronizado */
-  position: static; /* Alterado de center para static */
-  transition: background-color 0.2s, border-left 0.2s; /* Padronizado */
+  margin-left: 0.75rem;
+  margin-top: 0;
+  margin-right: 0;
+  padding: 0.8rem 1.5rem;
+  position: static;
+  transition: background-color 0.2s, border-left 0.2s;
+  
+  /* AJUSTE PARA O NOVO EFEITO: Espaço para a borda transparente */
+  border-left: 4px solid transparent; 
+  padding-left: calc(1.5rem - 4px);
 }
 
-.navItem:hover:not(.navActive) { /* Regra para evitar efeito duplicado */
+.navItem:hover:not(.navActive) {
   background-color: var(--primary-light);
 }
 
@@ -319,8 +408,8 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: center; /* Padronizado */
-  align-items: stretch; /* Alterado de flex-start para stretch */
+  justify-content: center;
+  align-items: stretch;
 }
 
 .occurrencesTable {
@@ -332,12 +421,12 @@ body {
 .occurrencesTable tbody td {
   color: var(--text-dark);
   font-size: 0.9rem;
-  padding: 0.9375rem 0.625rem; /* 15px 10px */
+  padding: 0.9375rem 0.625rem;
 }
 
 .occurrencesTable tbody tr {
   background-color: var(--white);
-  border-bottom: 0.0625rem solid var(--border-color-table); /* 1px */
+  border-bottom: 0.0625rem solid var(--border-color-table);
 }
 
 .occurrencesTable tbody tr:last-child {
@@ -345,11 +434,11 @@ body {
 }
 
 .occurrencesTable thead th {
-  border-bottom: 0.0625rem solid var(--border-color-table); /* 1px */
+  border-bottom: 0.0625rem solid var(--border-color-table);
   color: #999;
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 0.625rem 0.625rem; /* 10px 10px */
+  padding: 0.625rem 0.625rem;
   text-align: left;
   text-transform: capitalize;
 }
@@ -363,16 +452,16 @@ body {
   border-bottom: 0.0625rem solid var(--border-color-card);
   display: flex;
   flex-direction: column;
-  padding: 1.25rem; /* 20px */
+  padding: 1.25rem;
 }
 
 .profileImage {
-  border: 0.25rem solid #f0f0f0; /* 4px */
+  border: 0.25rem solid #f0f0f0;
   border-radius: 50%;
-  height: 6.25rem; /* 100px */
-  margin-bottom: 0.625rem; /* 10px */
+  height: 10rem;
+  margin-bottom: 0.625rem;
   object-fit: cover;
-  width: 6.25rem; /* 100px */
+  width: 10rem;
 }
 
 .profileName {
@@ -384,25 +473,25 @@ body {
   word-break: break-word;
   line-height: 1.2;
   max-width: 100%;
-  margin-bottom: 0.625rem; /* 10px */
+  margin-bottom: 0.625rem;
 }
 
 .profileRole {
   color: #888;
   font-size: 0.8rem;
-  margin-top: 0.25rem; /* 4px */
+  margin-top: 0.25rem;
 }
 
 .recentOccurrencesContainer {
   border-radius: var(--radius-default);
-  padding-top: 0.625rem; /* 10px */
+  padding-top: 0.625rem;
 }
 
 .recentOccurrencesHeader {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.9375rem; /* 15px */
+  margin-bottom: 0.9375rem;
 }
 
 .recentOccurrencesTitle {
@@ -412,22 +501,20 @@ body {
 }
 
 .rightSidebar {
-  /* ... (Mantido o estilo do rightSidebar, pois não faz parte da padronização) ... */
   background-color: var(--white);
   border-bottom-right-radius: 1rem;
-  box-shadow: -0.25rem 0 0.625rem rgba(0, 0, 0, 0.05); 
+  box-shadow: -0.25rem 0 0.625rem rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  gap: 1.875rem; 
-  padding: 1.875rem 1.25rem 1.875rem 1.25rem; 
-  width: 20rem; 
-  position: flex; 
-  right: 1rem;        
-  top: 2rem; 
-  height: calc(100vh - 4rem); 
+  gap: 1.875rem;
+  padding: 1.875rem 1.25rem 1.875rem 1.25rem;
+  width: 20rem;
+  position: flex;
+  right: 1rem;
+  top: 2rem;
+  height: calc(100vh - 4rem);
   border-top-left-radius: 1rem;
 }
-
 
 .seeMoreLink {
   color: #999;
@@ -444,22 +531,25 @@ body {
 
 .sidebar {
   background-color: var(--primary-dark);
-  box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.2); /* Padronizado */
+  box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.2);
   color: var(--text-light);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0; /* Padronizado */
-  width: 15rem; /* Padronizado */
-  height: 100vh; /* Mantido para ser seguro, se necessário */
+  padding: 0;
+  width: 15rem;
+  height: 100%;
+  /* CURVATURA CONFORME A IMAGEM */
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
 }
 
 .sidebar > .navItem:last-child {
-  border-radius: 0; /* Padronizado */
-  border-top: 0.0625rem solid rgba(255, 255, 255, 0.1); /* Padronizado */
-  margin-left: 0; /* Padronizado */
-  margin-top: 2rem; /* Padronizado */
-  padding: 1.5rem 1.5rem; /* Padronizado */
+  border-radius: 0;
+  border-top: 0.0625rem solid rgba(255, 255, 255, 0.1);
+  margin-left: 0;
+  margin-top: 2rem;
+  padding: 1.5rem 1.5rem;
 }
 
 .statusClosed {
@@ -480,11 +570,11 @@ body {
 .statusPill {
   background-color: var(--white);
   border-style: solid;
-  border-width: 0.0625rem; /* 1px */
-  border-radius: 1rem; /* 16px */
+  border-width: 0.0625rem;
+  border-radius: 1rem;
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 0.25rem 0.625rem; /* 4px 10px */
+  padding: 0.25rem 0.625rem;
   text-align: center;
 }

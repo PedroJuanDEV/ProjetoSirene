@@ -65,6 +65,22 @@
   z-index: 1;
 }
 
+.backLink {
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
+  font-size: 0.9rem;
+  color: var(--text-subtle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: var(--primary-dark);
+}
+
 body {
   background-color: var(--background-page);
   box-sizing: border-box;
@@ -92,6 +108,95 @@ body {
     align-items: center;
     display: flex;
     gap: 1rem;
+}
+
+.detailCard {
+  background-color: var(--background-card);
+  border-radius: var(--radius-default);
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 400px;
+}
+
+.detailGrid {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.detailHeader {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detailInfoList {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed #eee;
+  font-size: 1rem;
+}
+
+.detailItem:last-child {
+  border-bottom: none;
+}
+
+.detailLabel {
+  color: var(--text-subtle);
+  font-weight: 600;
+}
+
+.detailLocationCard {
+  background-color: var(--background-card);
+  border-radius: var(--radius-default);
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 400px;
+}
+
+.detailStatusClosed {
+    color: var(--status-closed);
+    font-weight: 700;
+}
+
+.detailStatusInProgress {
+    color: var(--status-in-progress);
+    font-weight: 700;
+}
+
+.detailStatusOpen {
+    color: var(--status-open);
+    font-weight: 700;
+}
+
+.detailSubtitle {
+  color: var(--text-subtle);
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.detailTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--primary-dark);
+}
+
+.detailValue {
+  color: var(--text-dark);
+  font-weight: 600;
 }
 
 .dropdownArrow {
@@ -152,6 +257,33 @@ body {
   width: 10%;
 }
 
+.locationAddress {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.locationFooter {
+  background-color: #f0f0f0; 
+  border-radius: 0 0 var(--radius-default) var(--radius-default);
+  padding: 0.75rem 1rem;
+  margin: 1.5rem -1.5rem -1.5rem -1.5rem; /* Extende para a borda do card */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.locationIcon {
+  color: var(--primary-dark);
+}
+
+.locationTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: var(--text-dark);
+}
+
 .logoSection {
   align-items: center;
   display: flex;
@@ -173,17 +305,23 @@ body {
   border-bottom-left-radius: 1.5rem;
 }
 
+.mapPlaceholder {
+  height: 200px; 
+  background-color: #ccc; 
+  border-radius: var(--radius-default);
+}
+
 .metricCard {
     background-color: var(--background-card);
     border: none;
     border-radius: 1rem;
     box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.08);
     display: flex;
-    flex: 1;
+    flex: 0 0 calc(33.33% - 1rem); 
     flex-direction: column;
     padding: 1rem 1rem;
     text-align: center;
-    height: 85px;
+    height: auto;
     justify-content: center;
     min-width: 150px;
 }
@@ -193,7 +331,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-    justify-content: space-between;
     margin-bottom: 2rem;
     width: 100%;
 }
@@ -256,20 +393,13 @@ body {
   animation: popIn 0.3s forwards;
 }
 
-.modalForm {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
 .modalInput {
     width: 100%;
     padding: 10px;
-    border: 1px solid var(--border-color);
+    margin-top: 15px;
+    border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
-    font-size: 0.95rem;
 }
 
 .modalOverlay {
@@ -283,8 +413,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  /* EFEITO DE FUNDO DESFOCADO */
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(1px);
   opacity: 0;
   animation: fadeIn 0.3s forwards;
 }
@@ -292,24 +421,18 @@ body {
 .modalTitle {
   margin-top: 0;
   margin-bottom: 20px;
-  color: var(--primary-dark);
+  color: var(--text-dark);
   font-size: 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid #eee;
   padding-bottom: 10px;
 }
 
-.multistepModal {
-    max-width: 650px; /* Largura maior para o formulário multi-etapa */
-}
-
-/* NOVO EFEITO: BORDA LATERAL MINIMALISTA */
 .navActive {
   background-color: var(--primary-dark);
   border-radius: var(--radius-default) 0 0 var(--radius-default);
   color: var(--text-light);
   font-weight: 700;
   margin-left: 0.75rem;
-  /* Borda branca de destaque */
   border-left: 4px solid var(--white);
   padding-left: calc(1.5rem - 4px);
 }
@@ -341,8 +464,6 @@ body {
   padding: 0.8rem 1.5rem;
   position: static;
   transition: background-color 0.2s, border-left 0.2s;
-  
-  /* AJUSTE PARA O NOVO EFEITO: Espaço para a borda transparente */
   border-left: 4px solid transparent;
   padding-left: calc(1.5rem - 4px);
 }
@@ -351,12 +472,11 @@ body {
   background-color: var(--primary-light);
 }
 
-/* AJUSTE: Centraliza as abas verticalmente */
 .navMenu {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: center; /* CENTRALIZAÇÃO VERTICAL */
+  justify-content: center;
   align-items: stretch;
   padding-top: 0;
 }
@@ -416,10 +536,27 @@ body {
   text-transform: capitalize;
 }
 
+.pBadge {
+  position: absolute;
+  left: 20rem; /* Ajuste para o centro da tela ou posição desejada */
+  bottom: 10rem;
+  background-color: #FFC107;
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
 .pageActive {
-  background-color: var(--primary-dark);
+  background-color: var(--background-card);
   border-color: var(--primary-dark);
-  color: var(--text-light);
+  color: var(--primary-dark);
   font-weight: 700;
 }
 
@@ -541,7 +678,6 @@ body {
   width: 100%;
 }
 
-/* AJUSTE: Curvatura e z-index */
 .sidebar {
   background-color: var(--primary-dark);
   box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.2);
@@ -563,59 +699,6 @@ body {
   margin-left: 0;
   margin-top: 2rem;
   padding: 1.5rem 1.5rem;
-}
-
-/* Indicadores de Etapa */
-.stepActive {
-    background-color: var(--primary-dark);
-    color: var(--white);
-    border-color: var(--primary-dark);
-}
-
-.stepCircle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: var(--background-card);
-    border: 2px solid var(--border-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    color: var(--text-subtle);
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-.stepIndicator {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    position: relative;
-}
-
-.stepIndicator::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50px;
-    right: 50px;
-    height: 2px;
-    background-color: var(--border-color);
-    transform: translateY(-50%);
-    z-index: 1;
-}
-
-.stepCircle:nth-child(2) {
-    margin: 0 2rem;
-}
-
-.stepCircle:nth-child(3) {
-    margin-right: 0;
-}
-
-.stepContent {
-    flex-grow: 1;
 }
 
 .sortDropdown {
@@ -671,26 +754,6 @@ body {
   width: 100%;
 }
 
-.uploadBox {
-    border: 2px dashed var(--border-color);
-    border-radius: var(--radius-default);
-    padding: 2rem;
-    text-align: center;
-    color: var(--text-subtle);
-    cursor: pointer;
-    transition: border-color 0.2s;
-}
-
-.uploadBox:hover {
-    border-color: var(--primary-dark);
-}
-
-.uploadInfo {
-    color: var(--text-subtle);
-    font-size: 0.9rem;
-    margin: 0 0 0.5rem 0;
-}
-
 .userTable {
   border-collapse: collapse;
   width: 100%;
@@ -709,6 +772,7 @@ body {
   font-size: 0.9rem;
   padding: 1rem 1.25rem;
   text-align: left;
+  vertical-align: middle;
 }
 
 .userTable th {

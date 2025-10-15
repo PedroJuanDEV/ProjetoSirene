@@ -41,6 +41,128 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, unit }) => (
     </div>
 );
 
+// --- COMPONENTE MODAL MULTI-ETAPA ---
+interface NewOcorrenciaModalProps {
+    onClose: () => void;
+}
+
+const NewOcorrenciaModal: React.FC<NewOcorrenciaModalProps> = ({ onClose }) => {
+    const [currentStep, setCurrentStep] = useState(1);
+    const totalSteps = 3;
+
+    const renderStepContent = (step: number): JSX.Element => {
+        switch (step) {
+            case 1:
+                return (
+                    <form className={styles.modalForm}>
+                        <h3 className={styles.formTitle}>Dados da Ocorrência</h3>
+                        <input type="text" className={styles.modalInput} placeholder="Tipo de Ocorrência" required />
+                        <select className={styles.modalInput} required>
+                            <option value="">Selecione a Prioridade</option>
+                            <option value="Alta">Alta</option>
+                            <option value="Média">Média</option>
+                            <option value="Baixa">Baixa</option>
+                        </select>
+                        <textarea className={styles.modalInput} placeholder="Descrição detalhada (opcional)"></textarea>
+                    </form>
+                );
+            case 2:
+                return (
+                    <form className={styles.modalForm}>
+                        <h3 className={styles.formTitle}>Localização</h3>
+                        <input type="text" className={styles.modalInput} placeholder="CEP / Logradouro" required />
+                        <input type="text" className={styles.modalInput} placeholder="Referência (opcional)" />
+                        <input type="text" className={styles.modalInput} placeholder="Produto Químico (se aplicável)" />
+                        <div className={styles.mapPlaceholder}>
+                            Mapa de localização
+                        </div>
+                    </form>
+                );
+            case 3:
+                return (
+                    <form className={styles.modalForm}>
+                        <h3 className={styles.formTitle}>Anexos e Observações</h3>
+                        <p className={styles.uploadInfo}>Clique ou arraste imagens e vídeos para anexar.</p>
+                        <div className={styles.uploadBox}>
+                           Clique para fazer upload
+                        </div>
+                        <textarea className={styles.modalInput} placeholder="Observações finais (opcional)"></textarea>
+                    </form>
+                );
+            default:
+                return <p>Erro</p>;
+        }
+    };
+
+    const handleNext = () => setCurrentStep(prev => Math.min(totalSteps, prev + 1));
+    const handleBack = () => setCurrentStep(prev => Math.max(1, prev - 1));
+    const handleSubmit = () => {
+        alert('Ocorrência Registrada com sucesso!');
+        onClose();
+    };
+
+    return (
+        <div className={styles.modalOverlay}>
+            <div className={`${styles.modalContent} ${styles.multistepModal}`}>
+                
+                <div className={styles.stepIndicator}>
+                    {[1, 2, 3].map(step => (
+                        <div 
+                            key={step} 
+                            className={`${styles.stepCircle} ${step <= currentStep ? styles.stepActive : ''}`}
+                        >
+                            {step}
+                        </div>
+                    ))}
+                </div>
+
+                <div className={styles.stepContent}>
+                    {renderStepContent(currentStep)}
+                </div>
+
+                <div className={styles.modalActions}>
+                    <button 
+                        type="button" 
+                        className={`${styles.button} ${styles.buttonSecondary}`} 
+                        onClick={onClose}
+                    >
+                        Cancelar
+                    </button>
+                    
+                    {currentStep > 1 && (
+                        <button 
+                            type="button" 
+                            className={styles.button} 
+                            onClick={handleBack}
+                        >
+                            Voltar
+                        </button>
+                    )}
+                    
+                    {currentStep < totalSteps ? (
+                        <button 
+                            type="button" 
+                            className={`${styles.button} ${styles.buttonPrimary}`} 
+                            onClick={handleNext}
+                        >
+                            Próximo
+                        </button>
+                    ) : (
+                        <button 
+                            type="submit" 
+                            className={`${styles.button} ${styles.buttonPrimary}`} 
+                            onClick={handleSubmit}
+                        >
+                            Finalizar Registro
+                        </button>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+// --- FIM DO MODAL MULTI-ETAPA ---
+
 
 function ListaOcorrencias(): JSX.Element {
   const navigate = useNavigate();
@@ -50,6 +172,9 @@ function ListaOcorrencias(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
   const ocorrenciasPerPage = 8;
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  // NOVO ESTADO PARA O MODAL MULTI-ETAPA
+  const [isNewOcorrenciaModalOpen, setIsNewOcorrenciaModalOpen] = useState(false);
+
 
   const totalOcorrencias = 530; 
   const ocorrenciasAbertas = 30; 
@@ -86,6 +211,10 @@ function ListaOcorrencias(): JSX.Element {
   
   const handleMenuItemClick = (path: string) => {
     navigate(path);
+  };
+
+  const handleViewDetail = (id: number) => {
+    navigate(`/visualizacao/${id}`);
   };
 
   const renderPageNumbers = () => {
@@ -130,7 +259,7 @@ function ListaOcorrencias(): JSX.Element {
 
         <nav className={styles.navMenu}>
           
-          <div className={`${styles.navItem} ${styles.navActive}`} onClick={() => handleMenuItemClick('/Inicial')}>
+          <div className={`${styles.navItem}`} onClick={() => handleMenuItemClick('/Inicial')}>
             <div className={styles.navIcon}><FileText size={20} /></div>
             <span className={styles.navText}>Pagina inicial</span>
           </div>
@@ -197,7 +326,11 @@ function ListaOcorrencias(): JSX.Element {
           </div>
           
           <div className={styles.controlsRightGroup}>
-            <button className={styles.newOcorrenciaButton}>
+            <button 
+                className={styles.newOcorrenciaButton}
+                // CHAMA O NOVO MODAL
+                onClick={() => setIsNewOcorrenciaModalOpen(true)}
+            >
                 <Plus size={18} /> 
                 nova ocorrência
             </button>
@@ -265,7 +398,7 @@ function ListaOcorrencias(): JSX.Element {
                     <td>{ocorrencia.regiao}</td>
                     <td>{ocorrencia.dataHora}</td>
                     <td className={styles.actionsCell}>
-                        <span onClick={() => console.log('Ver detalhe: ' + ocorrencia.id)}>Ver detalhe</span>
+                        <span onClick={() => handleViewDetail(ocorrencia.id)}>Ver detalhe</span>
                     </td>
                     <td>
                       <span className={`${styles.statusPill} ${getStatusClass(ocorrencia.status)}`}>
@@ -286,6 +419,11 @@ function ListaOcorrencias(): JSX.Element {
           </div>
         </div>
       </div>
+        
+      {/* RENDERIZAÇÃO DO MODAL MULTI-ETAPA */}
+      {isNewOcorrenciaModalOpen && (
+        <NewOcorrenciaModal onClose={() => setIsNewOcorrenciaModalOpen(false)} />
+      )}
     </div>
   );
 }
