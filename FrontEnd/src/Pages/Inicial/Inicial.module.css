@@ -10,13 +10,23 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes popIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 :root {
@@ -26,12 +36,12 @@
   --border-color: #e0e0e0;
   --border-color-card: #fff;
   --border-color-table: #fff;
-  --primary-dark: #550D08;
+  --primary-dark: #550d08;
   --primary-light: #702c28;
   --radius-default: 0.5rem;
-  --status-closed: #DF0404;
-  --status-in-progress: #FF6200;
-  --status-open: #00B087;
+  --status-closed: #df0404;
+  --status-in-progress: #ff6200;
+  --status-open: #00b087;
   --text-dark: #333333;
   --text-light: #eeeeee;
   --text-subtle: #999999;
@@ -85,7 +95,7 @@
 
 .activityItem {
   align-items: flex-start;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   border-radius: 0.5rem;
   display: flex;
   padding: 0.625rem;
@@ -117,7 +127,7 @@
 }
 
 .activityTime {
-  color: #94918A;
+  color: #94918a;
   font-size: 0.8rem;
   margin-top: 0.125rem;
   font-style: normal;
@@ -145,7 +155,7 @@
 body {
   background-color: var(--background-page);
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin: 0;
   min-height: 100vh;
   padding: 0;
@@ -241,12 +251,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.875rem;
+  border-radius: 2rem;
 }
 
 .feedContainer {
   background-color: var(--white);
   border-radius: var(--radius-default);
-  box-shadow: 0.01rem 0.30rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0.01rem 0.3rem rgba(0, 0, 0, 0.05);
   padding: 1.25rem;
 }
 
@@ -264,17 +275,24 @@ body {
 }
 
 .logoImage {
-  width: 30px;
-  height: 30px;
-  margin-right: 0.5rem;
+  width: 70px;
+  height: 70px;
+  margin-right: 0.25rem; /* aproximar mais dos ícones */
+}
+
+.navIconImg {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.9375rem;
+  display: inline-block;
 }
 
 .logoSection {
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* mover o logo para a esquerda */
   margin-bottom: 2rem;
-  padding: 1.5rem 0;
+  padding: 1.5rem 1rem; /* padding lateral reduzido */
   border-bottom: none;
 }
 
@@ -295,6 +313,12 @@ body {
   padding: 2.5rem 3rem;
   max-width: none;
   align-items: flex-start;
+  /* bordas arredondadas conforme o design (cantos esquerdos maiores) */
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .modalCloseButton {
@@ -326,12 +350,12 @@ body {
 }
 
 .modalInput {
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .modalOverlay {
@@ -365,9 +389,9 @@ body {
   border-radius: var(--radius-default) 0 0 var(--radius-default);
   color: var(--text-light);
   font-weight: 700;
-  margin-left: 0.75rem; 
+  margin-left: 0.75rem;
   /* Borda branca de destaque */
-  border-left: 4px solid var(--white); 
+  border-left: 4px solid var(--white);
   padding-left: calc(1.5rem - 4px);
 }
 
@@ -394,9 +418,9 @@ body {
   padding: 0.8rem 1.5rem;
   position: static;
   transition: background-color 0.2s, border-left 0.2s;
-  
+
   /* AJUSTE PARA O NOVO EFEITO: Espaço para a borda transparente */
-  border-left: 4px solid transparent; 
+  border-left: 4px solid transparent;
   padding-left: calc(1.5rem - 4px);
 }
 
@@ -410,6 +434,7 @@ body {
   flex-grow: 1;
   justify-content: center;
   align-items: stretch;
+  gap: 2rem; /* espaçamento vertical entre itens do menu */
 }
 
 .occurrencesTable {
@@ -537,9 +562,9 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: 0;
-  width: 15rem;
+  width: 16.5rem; /* aumentado para evitar quebra de linha */
   height: 100%;
-  /* CURVATURA CONFORME A IMAGEM */
+
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
 }
