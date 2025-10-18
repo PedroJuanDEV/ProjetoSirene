@@ -2,25 +2,47 @@
 import React, { useState, type JSX } from "react";
 import styles from "./Login.module.css";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Login(): JSX.Element {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const [cpf, setCpf] = useState("");
+  const [matricula, setMatricula] = useState("");
   const [senha, setSenha] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (cpf === "1" && senha === "1") {
-
-      navigate('/inicial');
-    } else {
-      setMessage("Credenciais inválidas. Tente novamente.");
+    if (!matricula.trim() || !senha.trim()) {
+      setMessage("Por favor, preencha todos os campos.");
+      setTimeout(() => setMessage(""), 5000);
+      return;
     }
 
-    setTimeout(() => setMessage(""), 5000);
+    setIsLoading(true);
+    setMessage("");
+
+    try {
+      const result = await login({
+        matricula: matricula.trim(),
+        senha: senha.trim(),
+      });
+
+      if (result.success) {
+        navigate('/inicial');
+      } else {
+        setMessage(result.message);
+        setTimeout(() => setMessage(""), 5000);
+      }
+    } catch (error) {
+      setMessage("Erro de conexão. Verifique sua internet e tente novamente.");
+      setTimeout(() => setMessage(""), 5000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleForgotPassword = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -44,9 +66,10 @@ function Login(): JSX.Element {
             </div>
             <input
               type="text"
-              value={cpf}
-              onChange={(e) => setCpf(e.target.value)}
-              className={styles.inputFieldBox} />
+              value={matricula}
+              onChange={(e) => setMatricula(e.target.value)}
+              className={styles.inputFieldBox}
+              disabled={isLoading} />
           </div>
 
           <div className={styles.formField}>
@@ -57,7 +80,8 @@ function Login(): JSX.Element {
               type="password"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
-              className={styles.inputFieldBox} />
+              className={styles.inputFieldBox}
+              disabled={isLoading} />
           </div>
 
           <a
@@ -74,8 +98,8 @@ function Login(): JSX.Element {
           </div>
 
           <div className={styles.CONFIRMAR}>
-            <button type="submit" className={styles.loginButton}>
-              Entrar
+            <button type="submit" className={styles.loginButton} disabled={isLoading}>
+              {isLoading ? 'Entrando...' : 'Entrar'}
             </button>
           </div>
         </div>

@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Login from './Pages/Login/Login.tsx';
 import ConfirmarSenha from './Pages/ConfirmarSenha/ConfirmarSenha.tsx';
 import GestaoUsuarios from './Pages/GestaoUsuario/GestaoUsuario.tsx';
@@ -11,31 +13,51 @@ import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        
-        <Route path="/" element={<Login />} />
-        
-        <Route path="/RecuperarSenha" element={<RecuperarSenha />} />
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          
+          <Route path="/" element={<Login />} />
+          
+          <Route path="/RecuperarSenha" element={<RecuperarSenha />} />
 
-        <Route path="/ConfirmarSenha" element={<ConfirmarSenha />} />
+          <Route path="/ConfirmarSenha" element={<ConfirmarSenha />} />
 
-        <Route path="/GestaoUsuario" element={<GestaoUsuarios />} />
-        
-        <Route path="/Ocorrencias" element={<Ocorrencias />} />
+          <Route path="/GestaoUsuario" element={
+            <ProtectedRoute requiredRole="ADMIN">
+              <GestaoUsuarios />
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/Ocorrencias" element={
+            <ProtectedRoute>
+              <Ocorrencias />
+            </ProtectedRoute>
+          } />
 
-        <Route path="/Inicial" element={<Inicial />} />
-        
-        
-        <Route path='/Visualizacao/:id' element={<Visualizacao />} />
+          <Route path="/Inicial" element={
+            <ProtectedRoute>
+              <Inicial />
+            </ProtectedRoute>
+          } />
+          
+          <Route path='/Visualizacao/:id' element={
+            <ProtectedRoute>
+              <Visualizacao />
+            </ProtectedRoute>
+          } />
 
-        <Route path='/Dashboard' element={<Dashboard />} />
+          <Route path='/Dashboard' element={
+            <ProtectedRoute requiredRole="COMANDANTE">
+              <Dashboard />
+            </ProtectedRoute>
+          } />
 
-        <Route path="*" element={<div>404 - Página Não Encontrada</div>} />
+          <Route path="*" element={<div>404 - Página Não Encontrada</div>} />
 
-
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
